@@ -7,22 +7,22 @@ void setup() {
 
 bool r, g , y = false;
 void loop() {
-<<<<<<< HEAD
+
   digitalWrite(10, r);
   digitalWrite(11, g);
   digitalWrite(12, y);
   
-  if (Serial.avalable() > 0)
+  if (Serial.available() > 0)
   {   
-=======
+
   
     digitalWrite(10, r);
     digitalWrite(11, g);
     digitalWrite(12, y);
     
-  if (Serial.avalable() > 0)
+  if (Serial.available() > 0)
   {
->>>>>>> e51830769b5dc6b37841e46110d7053886544e0f
+
     char rgy = Serial.read();
     if(rgy == 'r'){
       r = !r;
