@@ -12,14 +12,7 @@ void loop() {
   digitalWrite(11, g);
   digitalWrite(12, y);
   
-  if (Serial.available() > 0)
-  {   
-
-  
-    digitalWrite(10, r);
-    digitalWrite(11, g);
-    digitalWrite(12, y);
-    
+ 
   if (Serial.available() > 0)
   {
 
@@ -32,6 +25,6 @@ void loop() {
       y = !y;
     }
     }
-  }
+  
 
 }
