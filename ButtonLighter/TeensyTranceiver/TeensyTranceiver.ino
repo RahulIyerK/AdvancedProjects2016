@@ -10,7 +10,9 @@ void setup() {
   pinMode(buttonPinY, INPUT);
 }
 
-long lastDebounceTime = 0;  // the last time the output pin was toggled
+long lastDebounceTimeR = 0;  // the last time the output pin was toggled
+long lastDebounceTimeG = 0;
+long lastDebounceTimeY = 0;
 long debounceDelay = 50;
 int buttonStateR;             // the current reading from the input pin
 int buttonStateG;
@@ -25,10 +27,10 @@ char readButtonR(){
   
   if (reading != lastButtonStateR) {
     // reset the debouncing timer
-    lastDebounceTime = millis();
+    lastDebounceTimeR = millis();
   }
 
-  if ((millis() - lastDebounceTime) > debounceDelay) {
+  if ((millis() - lastDebounceTimeR) > debounceDelay) {
     buttonStateR = reading;
     out = 'r';
   }
@@ -43,10 +45,10 @@ char readButtonG(){
   
   if (reading != lastButtonStateG) {
     // reset the debouncing timer
-    lastDebounceTime = millis();
+    lastDebounceTimeG = millis();
   }
 
-  if ((millis() - lastDebounceTime) > debounceDelay) {
+  if ((millis() - lastDebounceTimeG) > debounceDelay) {
     buttonStateG = reading;
     out = 'g';
   }
@@ -61,10 +63,10 @@ char readButtonY(){
   
   if (reading != lastButtonStateY) {
     // reset the debouncing timer
-    lastDebounceTime = millis();
+    lastDebounceTimeY = millis();
   }
 
-  if ((millis() - lastDebounceTime) > debounceDelay && lastButtonStateY != reading) {
+  if ((millis() - lastDebounceTimeY) > debounceDelay) {
     buttonStateY = reading;
     out = 'y';
   }
