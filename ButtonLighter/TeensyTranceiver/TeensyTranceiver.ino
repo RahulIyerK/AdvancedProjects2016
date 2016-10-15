@@ -21,63 +21,66 @@ int lastButtonStateY = LOW;
 
 char readButtonR(){
   int reading = digitalRead(buttonPinR);
-  char ouptput = 'a';
+  char out = 'a';
   
-  if (reading != lastButtonState) {
+  if (reading != lastButtonStateR) {
     // reset the debouncing timer
     lastDebounceTime = millis();
   }
 
   if ((millis() - lastDebounceTime) > debounceDelay) {
     buttonStateR = reading;
-    output = 'r';
+    out = 'r';
   }
 
   lastButtonStateR = buttonStateR;
-  return output;
+  return out;
 }
 
 char readButtonG(){
   int reading = digitalRead(buttonPinG);
-  char ouptput = 'a';
+  char out = 'a';
   
-  if (reading != lastButtonState) {
+  if (reading != lastButtonStateG) {
     // reset the debouncing timer
     lastDebounceTime = millis();
   }
 
   if ((millis() - lastDebounceTime) > debounceDelay) {
     buttonStateG = reading;
-    output = 'g';
+    out = 'g';
   }
 
   lastButtonStateG = buttonStateG;
-  return output;
+  return out;
 }
 
 char readButtonY(){
   int reading = digitalRead(buttonPinY);
-  char ouptput = 'a';
+  char out = 'a';
   
-  if (reading != lastButtonState) {
+  if (reading != lastButtonStateY) {
     // reset the debouncing timer
     lastDebounceTime = millis();
   }
 
   if ((millis() - lastDebounceTime) > debounceDelay) {
     buttonStateY = reading;
-    output = 'y';
+    out = 'y';
   }
 
   lastButtonStateY = buttonStateY;
-  return output;
+  return out;
 }
 
 void loop() {
-    char rgy = 
-    if(rgy == 'r' || rgy == 'g' || rgy == 'y'){
-      Serial1.write(rgy);
+    if(readButtonR() == 'r'){
+      Serial1.write('r');
     }
-  
-
+    if(readButtonG() == 'g'){
+      Serial1.write('g');
+    }
+    if(readButtonY() == 'y'){
+      Serial1.write('y');
+    }
 }
