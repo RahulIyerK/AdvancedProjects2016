@@ -5,12 +5,13 @@ void setup() {
 
 bool r, g , y = false;
 void loop() {
-  if (Serial.avalable() > 0)
-  {
+  
     digitalWrite(10, r);
     digitalWrite(11, g);
     digitalWrite(12, y);
     
+  if (Serial.avalable() > 0)
+  {
     char rgy = Serial.read();
     if(rgy == 'r'){
       r = !r;

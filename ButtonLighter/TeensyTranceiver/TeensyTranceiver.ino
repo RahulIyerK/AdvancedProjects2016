@@ -64,7 +64,7 @@ char readButtonY(){
     lastDebounceTime = millis();
   }
 
-  if ((millis() - lastDebounceTime) > debounceDelay) {
+  if ((millis() - lastDebounceTime) > debounceDelay && lastButtonStateY != reading) {
     buttonStateY = reading;
     out = 'y';
   }
