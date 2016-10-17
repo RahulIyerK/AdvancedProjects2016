@@ -92,6 +92,8 @@ char readButtonY(){
   return out;
 }
 
+int roundNum = 1;
+
 void loop() {
   //reads character sequence for that round
   //checks button sequence
@@ -99,26 +101,19 @@ void loop() {
   if (srl.available()>0)
   {
     Serial.print("received: ");
-    String sequence = srl.readString();
-    int sequenceLength = sizeof(sequence);
-
-    Serial.print(", length: ");
-    Serial.print(sequenceLength);
-    Serial.print(" ,");
-    Serial.println(sequence);
+    char sequence [roundNum];
     
-    char sequenceArray [sequenceLength];
-
-    for (int i=0; i<sequenceLength; i++)
-    {
-      sequenceArray[i] = sequence.charAt(i);
-    }
+    srl.readBytes(sequence, roundNum);
+    
+    Serial.print(roundNum);
+    Serial.print(" characters");
+    
     
     int countPresses = 0;
 
     char userAnswer[sequenceLength];
     
-    while (countPresses < sequenceLength)
+    while (countPresses < roundNum)
     {
       
       if(readButtonR() == 'r' && buttonStateR == HIGH)
@@ -141,18 +136,21 @@ void loop() {
     bool answerCorrect = true;
     for (int i = 0; i<sequenceLength; i++)
     {
-      if (sequenceArray[i] != userAnswer[i])
+      if (sequence[i] != userAnswer[i])
       {
         answerCorrect = false;
       }
     }
+    
     if (answerCorrect)
     {
       srl.write('p');
+      roundNum++;
     }
     else
     {
       srl.write('n');
+      roundNum = 1;
     }
     
   }

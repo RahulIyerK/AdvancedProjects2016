@@ -33,31 +33,43 @@ void lightLED(int pin,int timeToLight){
   digitalWrite(pin, LOW);
 }
 
-String sequence = "";
+String sequenceString = "";
 
 void loop() {
 
   //add on to sequence
-  sequence = sequence + getNewLight();
-  Serial.println(sequence);
+  sequenceString = sequenceString + getNewLight();
+  Serial.println(sequenceString);
+  
+  int sequenceLength = sizeof(sequenceString);
+  
+  char sequenceCharArray [sequenceLength];
+  
+  for (int i = 0; i< sequenceLength; i++)
+  {
+    sequenceCharArray[i] = sequenceString.charAt(i);
+  }
+  
+  
   //light up leds for the round
-  for(int j = 0; j < sequence.length(); j++){
+  for(int j = 0; j < sequenceLength; j++){
     delay(250);
-    if(sequence.charAt(j) == 'r'){
+    if(sequenceCharArray[j] == 'r'){
       lightLED(R_PIN, 1000);
-    } else if(sequence.charAt(j) == 'g'){
+    } else if(sequenceCharArray[j] == 'g'){
       lightLED(G_PIN, 1000);
     } else {
       lightLED(Y_PIN, 1000);
     }
   }
 
-  //Move that Bus!
-  srl.println(sequence);
+  //write over softwareserial
+  srl.write(sequenceCharArray);
   
   //listen for response from arduino (p for pass, n for no pass)
   bool stillWaiting = true;
   char result;
+  
   while(stillWaiting){
     
     if(srl.available() > 0){ //You've got mail!!!
@@ -77,7 +89,7 @@ void loop() {
       lightLED(R_PIN, 500);
       delay(500);
     }
-    sequence = "";
+    sequenceString = "";
   }
   delay(2500);//give time for players to realize the result and then prepare to memorize
 
