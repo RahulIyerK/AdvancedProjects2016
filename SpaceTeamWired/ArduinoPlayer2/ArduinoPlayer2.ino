@@ -1,10 +1,16 @@
+#include <SoftwareSerial.h>
+
 const int buttonPinR = 2;
 const int buttonPinG = 4;
 const int buttonPinY = 6;
 
+SoftwareSerial srl (8,9);
+
 void setup() {
   // put your setup code here, to run once:
-  Serial1.begin(9600);
+  Serial.begin(9600);
+  srl.begin(9600);
+  
   pinMode(buttonPinR, INPUT);
   pinMode(buttonPinG, INPUT);
   pinMode(buttonPinY, INPUT);
@@ -87,13 +93,69 @@ char readButtonY(){
 }
 
 void loop() {
-    if(readButtonR() == 'r'){
-      Serial1.write('r');
+  //reads character sequence for that round
+  //checks button sequence
+  //sends back 'p'/'n'
+  if (srl.available()>0)
+  {
+    Serial.print("received: ");
+    String sequence = srl.readString();
+    int sequenceLength = sizeof(sequence);
+
+    Serial.print(", length: ");
+    Serial.print(sequenceLength);
+    Serial.print(" ,");
+    Serial.println(sequence);
+    
+    char sequenceArray [sequenceLength];
+
+    for (int i=0; i<sequenceLength; i++)
+    {
+      sequenceArray[i] = sequence.charAt(i);
     }
-    if(readButtonG() == 'g'){
-      Serial1.write('g');
+    
+    int countPresses = 0;
+
+    char userAnswer[sequenceLength];
+    
+    while (countPresses < sequenceLength)
+    {
+      
+      if(readButtonR() == 'r' && buttonStateR == HIGH)
+      {
+          userAnswer[countPresses] = 'r';
+          countPresses++;
+      }
+      if(readButtonG() == 'g' && buttonStateG == HIGH)
+      {
+          userAnswer[countPresses] = 'g';
+          countPresses++;
+      }
+      if(readButtonY() == 'y' && buttonStateY == HIGH)
+      {
+        userAnswer[countPresses] = 'y';
+        countPresses++;
+      }
     }
-    if(readButtonY() == 'y'){
-      Serial1.write('y');
+    
+    bool answerCorrect = true;
+    for (int i = 0; i<sequenceLength; i++)
+    {
+      if (sequenceArray[i] != userAnswer[i])
+      {
+        answerCorrect = false;
+      }
     }
+    if (answerCorrect)
+    {
+      srl.write('p');
+    }
+    else
+    {
+      srl.write('n');
+    }
+    
+  }
+  
+  
 }
