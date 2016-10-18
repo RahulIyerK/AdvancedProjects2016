@@ -34,37 +34,30 @@ void lightLED(int pin,int timeToLight){
 }
 
 String sequenceString = "";
+char sequenceArray [1000];
 int roundNum = 1;
 
 void loop() {
 
   //add on to sequence
-  sequenceString = sequenceString + getNewLight();
-  Serial.println(sequenceString);
-
-  
-  char sequenceCharArray [roundNum];
-  
-  for (int i = 0; i< roundNum; i++)
-  {
-    sequenceCharArray[i] = sequenceString.charAt(i);
-  }
+  sequenceArray [roundNum - 1] = getNewLight();
+  Serial.println(sequenceArray);
   
   
   //light up leds for the round
   for(int j = 0; j < roundNum; j++){
     delay(250);
-    if(sequenceCharArray[j] == 'r'){
+    if(sequenceArray[j] == 'r'){
       lightLED(R_PIN, 1000);
-    } else if(sequenceCharArray[j] == 'g'){
+    } else if(sequenceArray[j] == 'g'){
       lightLED(G_PIN, 1000);
-    } else if (sequenceCharArray[j] == 'y'){
+    } else if (sequenceArray[j] == 'y'){
       lightLED(Y_PIN, 1000);
     }
   }
 
   //write over softwareserial
-  srl.write(sequenceCharArray);
+  srl.write(sequenceArray);
   
   //listen for response from arduino (p for pass, n for no pass)
   bool stillWaiting = true;
@@ -91,7 +84,6 @@ void loop() {
       delay(250);
     }
     roundNum = 1;
-    sequenceString = "";
   }
   delay(1000);//give time for players to realize the result and then prepare to memorize
 
