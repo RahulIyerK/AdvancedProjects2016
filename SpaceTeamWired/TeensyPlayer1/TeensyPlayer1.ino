@@ -58,7 +58,7 @@ void loop() {
       lightLED(R_PIN, 1000);
     } else if(sequenceCharArray[j] == 'g'){
       lightLED(G_PIN, 1000);
-    } else {
+    } else if (sequenceCharArray[j] == 'y'){
       lightLED(Y_PIN, 1000);
     }
   }
@@ -81,13 +81,13 @@ void loop() {
   //if good, flash green led and continue otherwise flash red and reset
   if(result == 'p'){ //You've got a match or a lucky guess
     for(int k = 0; k < 3; k++){
-      lightLED(G_PIN, 500);
-      delay(500);//No need to reset sequence as they passed the test
+      lightLED(G_PIN, 250);
+      delay(250);//No need to reset sequence as they passed the test
     }
   } else {
     for(int k = 0; k < 3; k++){
-      lightLED(R_PIN, 500);
-      delay(500);
+      lightLED(R_PIN, 250);
+      delay(250);
     }
     sequenceString = "";
   }
