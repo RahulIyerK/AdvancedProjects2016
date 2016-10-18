@@ -103,15 +103,16 @@ void loop() {
     Serial.print("received: ");
     char sequence [roundNum];
     
-    srl.readBytes(sequence, roundNum);
+    srl.readBytesUntil('\n', sequence, roundNum);
     
     Serial.print(roundNum);
-    Serial.print(" characters");
+    Serial.print(" characters:");
+    Serial.println(sequence);
     
     
     int countPresses = 0;
 
-    char userAnswer[sequenceLength];
+    char userAnswer[roundNum];
     
     while (countPresses < roundNum)
     {
@@ -134,7 +135,7 @@ void loop() {
     }
     
     bool answerCorrect = true;
-    for (int i = 0; i<sequenceLength; i++)
+    for (int i = 0; i<roundNum; i++)
     {
       if (sequence[i] != userAnswer[i])
       {

@@ -34,25 +34,25 @@ void lightLED(int pin,int timeToLight){
 }
 
 String sequenceString = "";
+int roundNum = 1;
 
 void loop() {
 
   //add on to sequence
   sequenceString = sequenceString + getNewLight();
   Serial.println(sequenceString);
+
   
-  int sequenceLength = sizeof(sequenceString);
+  char sequenceCharArray [roundNum];
   
-  char sequenceCharArray [sequenceLength];
-  
-  for (int i = 0; i< sequenceLength; i++)
+  for (int i = 0; i< roundNum; i++)
   {
     sequenceCharArray[i] = sequenceString.charAt(i);
   }
   
   
   //light up leds for the round
-  for(int j = 0; j < sequenceLength; j++){
+  for(int j = 0; j < roundNum; j++){
     delay(250);
     if(sequenceCharArray[j] == 'r'){
       lightLED(R_PIN, 1000);
@@ -84,13 +84,15 @@ void loop() {
       lightLED(G_PIN, 250);
       delay(250);//No need to reset sequence as they passed the test
     }
+    roundNum++;
   } else {
     for(int k = 0; k < 3; k++){
       lightLED(R_PIN, 250);
       delay(250);
     }
+    roundNum = 1;
     sequenceString = "";
   }
-  delay(2500);//give time for players to realize the result and then prepare to memorize
+  delay(1000);//give time for players to realize the result and then prepare to memorize
 
 }
