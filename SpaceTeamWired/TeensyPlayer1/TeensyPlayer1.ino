@@ -34,7 +34,7 @@ void lightLED(int pin,int timeToLight){
 }
 
 String sequenceString = "";
-char sequenceArray [1000];
+char sequenceArray [100];
 int roundNum = 1;
 
 void loop() {

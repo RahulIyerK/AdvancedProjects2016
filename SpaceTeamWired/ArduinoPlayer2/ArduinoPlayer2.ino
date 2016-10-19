@@ -103,7 +103,7 @@ void loop() {
     Serial.print("received: ");
     char sequence [roundNum];
     
-    srl.readBytesUntil('\n', sequence, roundNum);
+    srl.readBytes(sequence, roundNum);
     
     Serial.print(roundNum);
     Serial.print(" characters:");
