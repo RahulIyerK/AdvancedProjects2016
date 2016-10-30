@@ -995,7 +995,7 @@ void RF24::setPALevel(uint8_t level)
     {
         setup |= 0b00000100;
     }
-    else if(level == RF24_PA_HIGH)/
+    else if(level == RF24_PA_HIGH)
     {
         setup |= 0b00000010;
     }
@@ -1028,14 +1028,14 @@ void RF24::setCRCLength(rf24_crclength_e length)
 	// possible choices for length are RF24_CRC_DISABLED, RF24_CRC_8, and RF24_CRC_16
     config = read_register(CONFIG) & 0b11110011;
     
-    //thanks for the code Rahul's cousin!
-    if !( length == RF24_CRC_DISABLED)
+    if ( length != RF24_CRC_DISABLED)
     {
-        config |= 0b00001000;
+        config |= 0b00001000; //RF24_CRC_8: 0b00001000
+        
         //only need to set CRC0 if CRC is 2 bytes
         if (length == RF24_CRC_16)
         {
-            config |= 0b00000100;
+            config |= 0b00000100; //0b00001100
         }
     }
     
