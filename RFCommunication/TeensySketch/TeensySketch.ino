@@ -37,6 +37,7 @@ void setup() {
   
   game.myInt = 0;
   radio.write((char*) &game, sizeof(game));
+  radio.openReadingPipe(0, pipes[0]);
   radio.startListening();
 
 }
