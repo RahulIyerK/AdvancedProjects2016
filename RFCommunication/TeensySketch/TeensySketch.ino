@@ -29,10 +29,8 @@ void setup() {
   // put your setup code here, to run once:
   radio.begin();
   initRadio();
-  
-  radio.startListening();
+
   radio.stopListening();
-  
   radio.openWritingPipe(pipes[1]); //writing pipe
   
   game.myInt = 0;

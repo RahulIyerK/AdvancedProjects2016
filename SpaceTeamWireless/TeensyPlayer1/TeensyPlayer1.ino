@@ -37,6 +37,21 @@ String sequenceString = "";
 char sequenceArray [100];
 int roundNum = 1;
 
+struct data
+{
+  char sequenceArray[25];
+  char result = 'p';
+  uint8_t roundNum = 1;
+};
+
+data game;
+
+
+
+
+
+
+
 void loop() {
 
   //add on to sequence
