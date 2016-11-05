@@ -987,19 +987,20 @@ void RF24::setPALevel(uint8_t level)
   // RF24_PA_MIN, RF24_PA_LOW, RF24_PA_HIGH, and RF24_PA_MAX
   // remember to write to the RF_SETUP register when you are done
     
-    if (level == RF24_PA_MIN)
+    if (level == RF24_PA_MAX) //3
     {
+        
         setup |= 0b00000110;
     }
-    else if(level == RF24_PA_LOW)
+    else if(level == RF24_PA_HIGH) //2
     {
         setup |= 0b00000100;
     }
-    else if(level == RF24_PA_HIGH)
+    else if(level == RF24_PA_LOW) //1
     {
         setup |= 0b00000010;
     }
-    else { //It must be RF24_PA_MAX if we get here
+    else { //It must be RF24_PA_MIN if we get here
         //Don't need to do anything here
     }
     write_register(RF_SETUP, setup);

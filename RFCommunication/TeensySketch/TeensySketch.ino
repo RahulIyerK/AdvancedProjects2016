@@ -15,28 +15,32 @@ void initRadio()
   radio.setDataRate(RF24_1MBPS); //1Mbps data rate
   
   radio.openReadingPipe(0, pipes[0]); //reading pipe
-
+  radio.openWritingPipe(pipes[1]);
 }
 
 struct data {
   uint8_t myInt;
 };
 
-data game;
+data game; 
 
 void setup() {
   Serial.begin(9600);
+  while(!Serial);
+  Serial.println("intialized serial port...");
   // put your setup code here, to run once:
   radio.begin();
   initRadio();
 
   radio.stopListening();
-  radio.openWritingPipe(pipes[1]); //writing pipe
   
   game.myInt = 0;
+  Serial.println(game.myInt);
   radio.write((char*) &game, sizeof(game));
-  radio.openReadingPipe(0, pipes[0]);
+  
+  Serial.println("finished writing");
   radio.startListening();
+  Serial.println("started listening");
 
 }
 
@@ -45,7 +49,11 @@ void setup() {
 void loop() {
   if (radio.available(0))
   {
+    Serial.println("found data");
+    
     radio.read((char*) &game, sizeof(game));
+    Serial.print("read data");
+    
     Serial.println(game.myInt);
   }
 }
