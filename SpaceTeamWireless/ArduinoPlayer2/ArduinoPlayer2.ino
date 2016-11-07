@@ -1,19 +1,40 @@
 #include <SoftwareSerial.h>
+#include <SPI.h>
+#include "RF24.h"
+#include "nRF24L01.h"
+
+RF24 radio(9,10);
+
+uint64_t pipes[2] = {0xF0BADA5535, 0xF0B16B00B5}; //reading, writing
+
+void initRadio()
+{
+  radio.setPALevel(RF24_PA_HIGH);
+  //payload size default 32...
+  radio.setChannel(10); //we're team 10 :) 
+  radio.setCRCLength(RF24_CRC_16); //2-byte CRC
+  radio.setDataRate(RF24_1MBPS); //1Mbps data rate
+  
+  radio.openReadingPipe(0, pipes[0]); //reading pipe
+  radio.openWritingPipe(pipes[1]);
+}
 
 const int buttonPinR = 2;
 const int buttonPinG = 4;
 const int buttonPinY = 6;
 
-SoftwareSerial srl (8,9);
+
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  srl.begin(9600);
+  
   
   pinMode(buttonPinR, INPUT);
   pinMode(buttonPinG, INPUT);
   pinMode(buttonPinY, INPUT);
+
+  radio.startListening();
 }
 
 long lastDebounceTimeR = 0;  // the last time the output pin was toggled
@@ -26,6 +47,7 @@ int buttonStateY = LOW;
 int lastReadingR = LOW;
 int lastReadingG = LOW;
 int lastReadingY = LOW;
+
 
 char readButtonR(){
   int reading = digitalRead(buttonPinR);//get what state the button is
@@ -92,22 +114,31 @@ char readButtonY(){
   return out;
 }
 
+char sequenceArray [100];
 int roundNum = 1;
+
+struct data
+{
+  char sequenceArraySend [25];
+  char result = 'p';
+};
+
+data game;
 
 void loop() {
   //reads character sequence for that round
   //checks button sequence
   //sends back 'p'/'n'
-  if (srl.available()>0)
-  {
-    Serial.print("received: ");
-    char sequence [roundNum];
-    
-    srl.readBytes(sequence, roundNum);
-    
-    Serial.print(roundNum);
-    Serial.print(" characters:");
-    Serial.println(sequence);
+  int counter = 0;
+  while(counter < 4) {
+    if(radio.available(0)){
+      radio.read((char*) &game, sizeof(game));
+      for (int j = 0; j < 25; j++){    
+      sequenceArray[(counter * 25) + j] = game.sequenceArraySend[j];
+      }
+      counter++;
+    }
+  }
     
     
     int countPresses = 0;
@@ -137,7 +168,7 @@ void loop() {
     bool answerCorrect = true;
     for (int i = 0; i<roundNum; i++)
     {
-      if (sequence[i] != userAnswer[i])
+      if (sequenceArray[i] != userAnswer[i])
       {
         answerCorrect = false;
       }
@@ -145,16 +176,17 @@ void loop() {
     
     if (answerCorrect)
     {
-      srl.write('p');
+      game.result = 'p';
       roundNum++;
     }
     else
     {
-      srl.write('n');
+      game.result = 'n';
       roundNum = 1;
     }
+    radio.stopListening();
     
-  }
-  
+    radio.write((char*) &game, sizeof(game));
+    radio.startListening();
   
 }

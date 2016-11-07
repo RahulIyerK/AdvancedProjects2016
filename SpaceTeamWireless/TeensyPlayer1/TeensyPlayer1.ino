@@ -1,14 +1,37 @@
 #include <SoftwareSerial.h>
+#include <SPI.h>
+#include "RF24.h"
+#include "nRF24L01.h"
+
+RF24 radio(9,10);
+
+uint64_t pipes[2] = {0xF0B16B00B5, 0xF0BADA5535}; //reading, writing
+
+void initRadio()
+{
+  radio.setPALevel(RF24_PA_HIGH);
+  //payload size default 32...
+  radio.setChannel(10); //we're team 10 :) 
+  radio.setCRCLength(RF24_CRC_16); //2-byte CRC
+  radio.setDataRate(RF24_1MBPS); //1Mbps data rate
+  
+  radio.openReadingPipe(0, pipes[0]); //reading pipe
+  radio.openWritingPipe(pipes[1]);
+}
 int const R_PIN = 3;
 int const G_PIN = 6;
 int const Y_PIN = 9;
 
-SoftwareSerial srl(11, 12);
-
 void setup() {
-  srl.begin(9600);
-  randomSeed(analogRead(0));
   Serial.begin(9600);
+  while(!Serial);
+  radio.begin();
+  initRadio();
+
+
+  
+  randomSeed(analogRead(0));
+  
   pinMode(R_PIN, OUTPUT);
   pinMode(G_PIN, OUTPUT);
   pinMode(Y_PIN, OUTPUT);
@@ -33,15 +56,14 @@ void lightLED(int pin,int timeToLight){
   digitalWrite(pin, LOW);
 }
 
-String sequenceString = "";
+
 char sequenceArray [100];
 int roundNum = 1;
 
 struct data
 {
-  char sequenceArray[25];
+  char sequenceArraySend [25];
   char result = 'p';
-  uint8_t roundNum = 1;
 };
 
 data game;
@@ -71,8 +93,18 @@ void loop() {
     }
   }
 
-  //write over softwareserial
-  srl.write(sequenceArray);
+  radio.stopListening();
+  //write over radio
+  for (int i = 0; i < 4; i++)
+  {
+    for (int j = 0; j < 25; j++)
+    {
+      game.sequenceArraySend[j] = sequenceArray[(i * 25) + j];
+    }
+    radio.write((char*) &game, sizeof(game));
+  }
+
+  radio.startListening();
   
   //listen for response from arduino (p for pass, n for no pass)
   bool stillWaiting = true;
@@ -80,14 +112,14 @@ void loop() {
   
   while(stillWaiting){
     
-    if(srl.available() > 0){ //You've got mail!!!
-      result = srl.read();
+    if(radio.available(0)){ //You've got mail!!!
+      radio.read((char*) &game, sizeof(game));
       stillWaiting = false;
     }
   }
   
   //if good, flash green led and continue otherwise flash red and reset
-  if(result == 'p'){ //You've got a match or a lucky guess
+  if(game.result == 'p'){ //You've got a match or a lucky guess
     for(int k = 0; k < 3; k++){
       lightLED(G_PIN, 250);
       delay(250);//No need to reset sequence as they passed the test
