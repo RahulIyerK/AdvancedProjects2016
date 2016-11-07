@@ -20,8 +20,7 @@ void initRadio()
 }
 int const R_PIN = 6;
 int const G_PIN = 7;
-int const Y_PIN = 8
-;
+int const Y_PIN = 8;
 
 void setup() {
   Serial.begin(9600);

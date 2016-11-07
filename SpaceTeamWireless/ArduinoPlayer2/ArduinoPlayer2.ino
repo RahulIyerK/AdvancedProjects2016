@@ -28,13 +28,17 @@ const int buttonPinY = 6;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  
+  Serial.println("started serial");
   
   pinMode(buttonPinR, INPUT);
   pinMode(buttonPinG, INPUT);
   pinMode(buttonPinY, INPUT);
 
+  radio.begin();
+  initRadio();
+  Serial.println("finished pinmodes");
   radio.startListening();
+  Serial.println("started listening");
 }
 
 long lastDebounceTimeR = 0;  // the last time the output pin was toggled
@@ -130,6 +134,7 @@ void loop() {
   //checks button sequence
   //sends back 'p'/'n'
   int counter = 0;
+  Serial.println("starting reading");
   while(counter < 4) {
     if(radio.available(0)){
       radio.read((char*) &game, sizeof(game));
@@ -139,7 +144,7 @@ void loop() {
       counter++;
     }
   }
-    
+    Serial.println("finished reading");
     
     int countPresses = 0;
 
