@@ -18,9 +18,10 @@ void initRadio()
   radio.openReadingPipe(0, pipes[0]); //reading pipe
   radio.openWritingPipe(pipes[1]);
 }
-int const R_PIN = 3;
-int const G_PIN = 6;
-int const Y_PIN = 9;
+int const R_PIN = 6;
+int const G_PIN = 7;
+int const Y_PIN = 8
+;
 
 void setup() {
   Serial.begin(9600);
