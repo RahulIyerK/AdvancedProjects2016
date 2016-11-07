@@ -164,7 +164,8 @@ void loop() {
         countPresses++;
       }
     }
-    
+
+    Serial.println("Finished reading in presses");
     bool answerCorrect = true;
     for (int i = 0; i<roundNum; i++)
     {
