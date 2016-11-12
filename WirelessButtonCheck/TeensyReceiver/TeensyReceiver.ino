@@ -47,6 +47,12 @@ void lightLED(int pin,int timeToLight){
   digitalWrite(pin, LOW);
 }
 
+void turnOffLights(){
+  digitalWrite(R_PIN, LOW);
+  digitalWrite(G_PIN, LOW);
+  digitalWrite(Y_PIN, LOW);
+}
+
 struct data
 {
   boolean isPushedR = false;
@@ -54,33 +60,31 @@ struct data
   double batteryVoltage = 0.0;
 };
 
-data game;
+data packet;
 
 void loop() {
-  //listen for response from arduino (p for pass, n for no pass)
   bool stillWaiting = true;
   char result;
   
-  while(stillWaiting){
-    
     if(radio.available(0)){ //You've got mail!!!
-      radio.read((char*) &game, sizeof(game));
+      radio.read((char*) &packet, sizeof(packet));
       stillWaiting = false;
     }
   }
   
-  //if good, flash green led and continue otherwise flash red and reset
-  if(game.batteryVoltage > 3.9){ //You've got a match or a lucky guess
-    lightLED(G_PIN, 250);
-  } else if (game.batteryVoltage > 3.7){
-    lightLED(Y_PIN, 250);
+  //Turn on the appropriate battery led indicator
+  turnOffLights();
+  if(packet.batteryVoltage > 3.9){
+    digitalWrite(G_PIN, HIGH);
+  } else if (packet.batteryVoltage > 3.7){
+    digitalWrite(Y_PIN, HIGH);
   } else {
-    lightLED(R_PIN, 250);
+    digitalWrite(R_PIN, HIGH);
   }
-  if (game.isPushedR == true) {
+  if (packet.isPushedR == true) {
     Serial.println("The right button has been clicked!!! (Did you mean to right click?!?!)");
   }
-  if (game.isPushedL == true) {
+  if (packet.isPushedL == true) {
     Serial.println("The left button has been clicked!!! (Did you mean to left click?!?!)");
   }
 }

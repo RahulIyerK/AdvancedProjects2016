@@ -18,8 +18,8 @@ void initRadio()
   radio.openWritingPipe(pipes[1]);
 }
 
-const int buttonPinR = 2;
-const int buttonPinL = 4;
+const int buttonPinR = 3;
+const int buttonPinL = 5;
 
 
 void setup() {
@@ -94,24 +94,24 @@ struct data
   double batteryVoltage = 0.0;
 };
 
-data game;
+data packet;
 
 void loop() {    
     if (readButtonR() == 'r') {
-      game.isPushedR = true;
+      packet.isPushedR = true;
     }
     else {
-      game.isPushedR = false;
+      packet.isPushedR = false;
     }
     if (readButtonL() == 'l') {
-      game.isPushedL = true;
+      packet.isPushedL = true;
     }
     else {
-      game.isPushedL = false;
+      packet.isPushedL = false;
     }
     Serial.println("Finished reading in presses");
 
-    game.batteryVoltage = (analogRead(1) * VOLTAGE_ADC_RATIO);
+    packet.batteryVoltage = (analogRead(1) * VOLTAGE_ADC_RATIO);
     
-    radio.write((char*) &game, sizeof(game));
+    radio.write((char*) &packet, sizeof(packet));
 }
