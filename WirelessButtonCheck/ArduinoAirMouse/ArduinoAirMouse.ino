@@ -14,7 +14,8 @@ void initRadio()
   radio.setChannel(10); //we're team 10 :) 
   radio.setCRCLength(RF24_CRC_16); //2-byte CRC
   radio.setDataRate(RF24_1MBPS); //1Mbps data rate
-  
+
+  radio.openReadingPipe(0, pipes[0]);
   radio.openWritingPipe(pipes[1]);
 }
 
@@ -92,7 +93,7 @@ struct data
 {
   boolean isPushedR = false;
   boolean isPushedL = false;
-  double batteryVoltage = 0.0;
+  uint16_t batteryADC = 0;
 };
 
 data packet;
@@ -112,7 +113,15 @@ void loop() {
     }
     Serial.println("Finished reading in presses");
 
-    packet.batteryVoltage = (double)((double)(analogRead(1) * (double)VOLTAGE_ADC_RATIO));
+    int vD = analogRead(1);
+    Serial.println(vD);
+    Serial.println();
     
+    uint16_t voltage_DividerOut = (uint16_t)analogRead(1);
+    packet.batteryADC = voltage_DividerOut;
+
+    Serial.println("Starting to write");
     radio.write((char*) &packet, sizeof(packet));
+    Serial.println(packet.batteryADC);
+    Serial.println("Finished writing");
 }
