@@ -7,6 +7,8 @@ RF24 radio(9,10);
 
 uint64_t pipes[2] = {0xF0B16B00B5, 0xF0BADA5535}; //reading, writing
 
+double batteryVoltage = 0.0;
+
 void initRadio()
 {
   radio.setPALevel(RF24_PA_HIGH);
@@ -40,6 +42,10 @@ void setup() {
   pinMode(Y_PIN, OUTPUT);
 }
 
+const double INPUT_MAX_VOLTS = 3.310;
+const double R1 = .99;
+const double R2 = 3.26;
+
 //Lights an LED for the specified time (in milliseconds) and then turns that LED Off
 void lightLED(int pin,int timeToLight){
   digitalWrite(pin, HIGH);
@@ -57,7 +63,7 @@ struct data
 {
   boolean isPushedR = false;
   boolean isPushedL = false;
-  double batteryVoltage = 1.0;
+  uint16_t batteryADC = 1.0;
 };
 
 data packet;
@@ -74,9 +80,12 @@ void loop() {
   Serial.println("Done Reading");
   //Turn on the appropriate battery led indicator
   turnOffLights();
-  if(packet.batteryVoltage > 3.9){
+
+  batteryVoltage = packet.batteryADC * (INPUT_MAX_VOLTS / 1023) * ((R1 + R2)/ R2);
+  
+  if(batteryVoltage > 3.9){
     digitalWrite(G_PIN, HIGH);
-  } else if (packet.batteryVoltage > 3.7){
+  } else if (batteryVoltage > 3.7){
     digitalWrite(Y_PIN, HIGH);
   } else {
     digitalWrite(R_PIN, HIGH);
@@ -89,5 +98,6 @@ void loop() {
     Serial.println("The left button has been clicked!!! (Did you mean to left click?!?!)");
   }
   Serial.print("Voltage: ");
-  Serial.println(packet.batteryVoltage);
+  Serial.println(batteryVoltage);
+  Serial.println(packet.batteryADC);
 }
