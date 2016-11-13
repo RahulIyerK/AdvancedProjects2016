@@ -32,6 +32,7 @@ void setup() {
 
   radio.begin();
   initRadio();
+  radio.stopListening();
 }
 
 long lastDebounceTimeR = 0;  // the last time the output pin was toggled
@@ -42,7 +43,7 @@ int buttonStateL = LOW;
 int lastReadingR = LOW;
 int lastReadingL = LOW;
 
-const double VOLTAGE_ADC_RATIO = (3.2232 / 1023) * ((3.3 + 1)/3.3);
+const double VOLTAGE_ADC_RATIO = (3.496 / 1023) * ((3.3 + 1)/3.3);
 
 char readButtonR(){
   int reading = digitalRead(buttonPinR);//get what state the button is
@@ -111,7 +112,7 @@ void loop() {
     }
     Serial.println("Finished reading in presses");
 
-    packet.batteryVoltage = (analogRead(1) * VOLTAGE_ADC_RATIO);
+    packet.batteryVoltage = (double)((double)(analogRead(1) * (double)VOLTAGE_ADC_RATIO));
     
     radio.write((char*) &packet, sizeof(packet));
 }

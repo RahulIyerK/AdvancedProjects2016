@@ -57,21 +57,21 @@ struct data
 {
   boolean isPushedR = false;
   boolean isPushedL = false;
-  double batteryVoltage = 0.0;
+  double batteryVoltage = 1.0;
 };
 
 data packet;
 
 void loop() {
   bool stillWaiting = true;
-  char result;
-  
-    if(radio.available(0)){ //You've got mail!!!
-      radio.read((char*) &packet, sizeof(packet));
-      stillWaiting = false;
+  Serial.println("About to read");
+    while(stillWaiting){
+      if(radio.available(0)){ //You've got mail!!!
+        radio.read((char*) &packet, sizeof(packet));
+        stillWaiting = false;
+      }
     }
-  }
-  
+  Serial.println("Done Reading");
   //Turn on the appropriate battery led indicator
   turnOffLights();
   if(packet.batteryVoltage > 3.9){
@@ -81,10 +81,13 @@ void loop() {
   } else {
     digitalWrite(R_PIN, HIGH);
   }
+  Serial.println("Finished writing the pins");
   if (packet.isPushedR == true) {
     Serial.println("The right button has been clicked!!! (Did you mean to right click?!?!)");
   }
   if (packet.isPushedL == true) {
     Serial.println("The left button has been clicked!!! (Did you mean to left click?!?!)");
   }
+  Serial.print("Voltage: ");
+  Serial.println(packet.batteryVoltage);
 }
