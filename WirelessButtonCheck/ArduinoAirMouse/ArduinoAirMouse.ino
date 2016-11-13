@@ -19,8 +19,8 @@ void initRadio()
   radio.openWritingPipe(pipes[1]);
 }
 
-const int buttonPinR = 3;
-const int buttonPinL = 5;
+const int buttonPinR = 5;
+const int buttonPinL = 3;
 
 
 void setup() {
@@ -97,15 +97,25 @@ struct data
 };
 
 data packet;
+boolean rState = false;//these states are used to represent the current state of the buttons
+boolean lState = false;
 
 void loop() {    
-    if (readButtonR() == 'r') {
+
+    if(readButtonR() == 'r'){
+      rState = !rState;
+    }
+    if(readButtonL() == 'l'){
+      lState=!lState;
+    }
+  
+    if (rState == true) {
       packet.isPushedR = true;
     }
     else {
       packet.isPushedR = false;
     }
-    if (readButtonL() == 'l') {
+    if (lState == true) {
       packet.isPushedL = true;
     }
     else {
