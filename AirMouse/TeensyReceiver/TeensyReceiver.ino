@@ -64,6 +64,8 @@ struct data
   boolean isPushedR = false;
   boolean isPushedL = false;
   uint16_t batteryADC = 1.0;
+  uint16_t acceleration[3] = {0, 0, 0};
+  uint16_t gyroscope[3] = {0, 0, 0};
 };
 
 data packet;
@@ -102,11 +104,11 @@ void loop() {
   Serial.println(packet.batteryADC);
 
   Serial.print("X: ");
-  Serial.println(packet[0]);
+  Serial.println(packet.acceleration[0]);
   
   Serial.print("Y: ");
-  Serial.println(packet[1]);
+  Serial.println(packet.acceleration[1]);
   
   Serial.print("Z: ");
-  Serial.println(packet[2]);
+  Serial.println(packet.acceleration[2]);
 }
