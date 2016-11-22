@@ -33,7 +33,7 @@ void setup() {
   radio.begin();
   initRadio();
 
-
+  Mouse.screenSize(1920, 1080);  // configure screen size
   
   randomSeed(analogRead(0));
   
@@ -46,6 +46,11 @@ const double INPUT_MAX_VOLTS = 3.310;
 const double R1 = .99;
 const double R2 = 3.26;
 
+const uint16_t CALIX = 0; //callibration for x
+const uint16_t CALIY = 0;
+const double scalingFactor = .002;
+const uint16_t THRESHOLD = 500;
+
 //Lights an LED for the specified time (in milliseconds) and then turns that LED Off
 void lightLED(int pin,int timeToLight){
   digitalWrite(pin, HIGH);
@@ -57,6 +62,20 @@ void turnOffLights(){
   digitalWrite(R_PIN, LOW);
   digitalWrite(G_PIN, LOW);
   digitalWrite(Y_PIN, LOW);
+}
+
+
+int moveVector[2] = {0, 0};
+
+ void tiltToVector(uint16_t acceleration[]){
+  moveVector[0] = 0;
+  moveVector[1] = 0;
+  if(abs(acceleration[0] - CALIX) > THRESHOLD){ //We should calculate move
+    moveVector[0] = (int)(acceleration[0] * scalingFactor) - ;
+  }
+  if(abs(acceleration[1] - CALIY) > THRESHOLD) {
+    moveVector[1] = (int)(acceleration[1] * scalingFactor) - ;
+  }
 }
 
 struct data
@@ -110,5 +129,9 @@ void loop() {
   Serial.println(packet.acceleration[1]);
   
   Serial.print("Z: ");
-  Serial.println(packet.acceleration[2]); //
+  Serial.println(packet.acceleration[2]);
+
+  tiltToVector(packet.acceleration);
+  Mouse.move(moveVector[0], moveVector[1]);
+  delay(25);
 }
