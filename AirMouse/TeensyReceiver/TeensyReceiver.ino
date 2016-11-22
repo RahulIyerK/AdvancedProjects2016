@@ -110,5 +110,5 @@ void loop() {
   Serial.println(packet.acceleration[1]);
   
   Serial.print("Z: ");
-  Serial.println(packet.acceleration[2]);
+  Serial.println(packet.acceleration[2]); //
 }
