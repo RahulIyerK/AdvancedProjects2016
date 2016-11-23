@@ -181,7 +181,7 @@ boolean rState = false;//these states are used to represent the current state of
 boolean lState = false;
 
 void loop() {    
-
+    
     if(readButtonR() == 'r'){
       rState = !rState;
     }

@@ -46,9 +46,18 @@ const double INPUT_MAX_VOLTS = 3.310;
 const double R1 = .99;
 const double R2 = 3.26;
 
-const uint16_t CALIX = 0; //callibration for x
-const uint16_t CALIY = 0;
-const double scalingFactor = .002;
+
+const int16_t CALIX = 0; //calibration for X
+const int16_t CALIY = -225; //calibration for Y
+
+const int16_t YMIN = -2630;
+const int16_t YMAX = 3290;
+
+const int16_t XMIN = -3600;
+const int16_t XMAX = 3900;
+
+
+const double scalingFactor = .007;
 const uint16_t THRESHOLD = 500;
 
 //Lights an LED for the specified time (in milliseconds) and then turns that LED Off
@@ -70,11 +79,11 @@ int moveVector[2] = {0, 0};
  void tiltToVector(uint16_t acceleration[]){
   moveVector[0] = 0;
   moveVector[1] = 0;
-  if(abs(acceleration[0] - CALIX) > THRESHOLD){ //We should calculate move
-    moveVector[0] = (int)(acceleration[0] * scalingFactor) - ;
+  if(abs((int16_t)acceleration[0] - CALIX) > THRESHOLD){ //We should calculate move
+    moveVector[1] = (int)((int16_t)acceleration[0] * scalingFactor);
   }
-  if(abs(acceleration[1] - CALIY) > THRESHOLD) {
-    moveVector[1] = (int)(acceleration[1] * scalingFactor) - ;
+  if(abs((int16_t)acceleration[1] - CALIY) > THRESHOLD) {
+    moveVector[0] = (int)((int16_t)acceleration[1] * scalingFactor);
   }
 }
 
@@ -90,6 +99,7 @@ struct data
 data packet;
 
 void loop() {
+
   bool stillWaiting = true;
   Serial.println("About to read");
     while(stillWaiting){
@@ -98,6 +108,9 @@ void loop() {
         stillWaiting = false;
       }
     }
+  Mouse.move(moveVector[0], moveVector[1]); //added this here to make it smoother ;)
+
+  
   Serial.println("Done Reading");
   //Turn on the appropriate battery led indicator
   turnOffLights();
@@ -111,10 +124,14 @@ void loop() {
   } else {
     digitalWrite(R_PIN, HIGH);
   }
+  
+  Mouse.move(moveVector[0], moveVector[1]); //added for smoothness ;)
+  
   Serial.println("Finished writing the pins");
   if (packet.isPushedR == true) {
     Serial.println("The right button has been clicked!!! (Did you mean to right click?!?!)");
   }
+
   if (packet.isPushedL == true) {
     Serial.println("The left button has been clicked!!! (Did you mean to left click?!?!)");
   }
@@ -123,15 +140,22 @@ void loop() {
   Serial.println(packet.batteryADC);
 
   Serial.print("X: ");
-  Serial.println(packet.acceleration[0]);
+  Serial.println((int16_t) packet.acceleration[0]);
   
   Serial.print("Y: ");
-  Serial.println(packet.acceleration[1]);
+  Serial.println((int16_t) packet.acceleration[1]);
   
   Serial.print("Z: ");
-  Serial.println(packet.acceleration[2]);
+  Serial.println((int16_t) packet.acceleration[2]);
 
   tiltToVector(packet.acceleration);
+  if (packet.isPushedL && packet.isPushedR)
+  {
+    Mouse.set_buttons(0,1,0);
+  }
+  else {
+    Mouse.set_buttons(packet.isPushedL, 0, packet.isPushedR);
+  }
   Mouse.move(moveVector[0], moveVector[1]);
-  delay(25);
+  //delay(5);
 }
