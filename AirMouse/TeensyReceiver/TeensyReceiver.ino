@@ -23,13 +23,15 @@ void initRadio()
   radio.startListening();
 
 }
-#define R_PIN 6
-#define G_PIN 7
-#define Y_PIN 8
+#define R_PIN 6 //Red LED
+#define G_PIN 7 //Green LED
+#define Y_PIN 8 //Yellow LED
 
 void setup() {
   Serial.begin(9600);
-  while(!Serial);
+  while(!Serial); //wait until Serial is initialized...(we found that not including this line of code caused errors on the 
+                  //Teensy because it started executing code without ensuring that Serial communication with the laptop was
+                  //properly initialized...
   radio.begin();
   initRadio();
 
@@ -42,9 +44,10 @@ void setup() {
   pinMode(Y_PIN, OUTPUT);
 }
 
-#define INPUT_MAX_VOLTS 3.310
-#define R1 .99
-#define R2 3.26
+#define INPUT_MAX_VOLTS 3.310 //MEASURED Vcc of Arduino Pro Mini when powered by battery (this number must be changed when 
+                              //the Arduino is powered by a laptop
+#define R1 .99 //"top" resistor in voltage divider
+#define R2 3.26 //"bottom" resistor in voltage divider
 
 
 #define CALIX 0 //calibration for X
@@ -150,9 +153,9 @@ void loop() {
   Serial.print("Z: ");
   Serial.println((int16_t) packet.acceleration[2]);
 
-  tiltToVector(packet.acceleration);
+  tiltToVector(packet.acceleration); //re-calculate move vector coordinates
   
-  //todo: implement scrolling!
+  //todo: implement scrolling and other cool mouse functions!
   if (packet.isPushedL && packet.isPushedR)
   {
     Mouse.set_buttons(0,1,0);
