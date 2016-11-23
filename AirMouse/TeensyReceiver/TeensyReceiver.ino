@@ -23,9 +23,9 @@ void initRadio()
   radio.startListening();
 
 }
-int const R_PIN = 6;
-int const G_PIN = 7;
-int const Y_PIN = 8;
+#define R_PIN 6
+#define G_PIN 7
+#define Y_PIN 8
 
 void setup() {
   Serial.begin(9600);
@@ -42,23 +42,23 @@ void setup() {
   pinMode(Y_PIN, OUTPUT);
 }
 
-const double INPUT_MAX_VOLTS = 3.310;
-const double R1 = .99;
-const double R2 = 3.26;
+#define INPUT_MAX_VOLTS 3.310
+#define R1 .99
+#define R2 3.26
 
 
-const int16_t CALIX = 0; //calibration for X
-const int16_t CALIY = -225; //calibration for Y
+#define CALIX 0 //calibration for X
+#define CALIY -225 //calibration for Y
 
-const int16_t YMIN = -2630;
-const int16_t YMAX = 3290;
+#define YMIN -2630 //unused
+#define YMAX 3290 //unused
 
-const int16_t XMIN = -3600;
-const int16_t XMAX = 3900;
+#define XMIN -3600 //unused
+#define XMAX 3900 //unused
 
 
-const double scalingFactor = .007;
-const uint16_t THRESHOLD = 500;
+#define scalingFactor .007
+#define THRESHOLD 500
 
 //Lights an LED for the specified time (in milliseconds) and then turns that LED Off
 void lightLED(int pin,int timeToLight){
@@ -76,10 +76,10 @@ void turnOffLights(){
 
 int moveVector[2] = {0, 0};
 
- void tiltToVector(uint16_t acceleration[]){
+void tiltToVector(const uint16_t acceleration[]){
   moveVector[0] = 0;
   moveVector[1] = 0;
-  if(abs((int16_t)acceleration[0] - CALIX) > THRESHOLD){ //We should calculate move
+  if(abs((int16_t)acceleration[0] - CALIX) > THRESHOLD){ //calculate move
     moveVector[1] = (int)((int16_t)acceleration[0] * scalingFactor);
   }
   if(abs((int16_t)acceleration[1] - CALIY) > THRESHOLD) {
@@ -108,7 +108,8 @@ void loop() {
         stillWaiting = false;
       }
     }
-  Mouse.move(moveVector[0], moveVector[1]); //added this here to make it smoother ;)
+  
+  Mouse.move(moveVector[0], moveVector[1]); //added for smoothness
 
   
   Serial.println("Done Reading");
@@ -125,8 +126,9 @@ void loop() {
     digitalWrite(R_PIN, HIGH);
   }
   
-  Mouse.move(moveVector[0], moveVector[1]); //added for smoothness ;)
-  
+  Mouse.move(moveVector[0], moveVector[1]); //added for smoothness
+
+  //prints for debugging purposes
   Serial.println("Finished writing the pins");
   if (packet.isPushedR == true) {
     Serial.println("The right button has been clicked!!! (Did you mean to right click?!?!)");
@@ -149,6 +151,8 @@ void loop() {
   Serial.println((int16_t) packet.acceleration[2]);
 
   tiltToVector(packet.acceleration);
+  
+  //todo: implement scrolling!
   if (packet.isPushedL && packet.isPushedR)
   {
     Mouse.set_buttons(0,1,0);
@@ -156,6 +160,8 @@ void loop() {
   else {
     Mouse.set_buttons(packet.isPushedL, 0, packet.isPushedR);
   }
+  
   Mouse.move(moveVector[0], moveVector[1]);
+  
   //delay(5);
 }

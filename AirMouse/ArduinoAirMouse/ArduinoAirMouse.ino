@@ -4,6 +4,7 @@
 #include "nRF24L01.h"
 #include <Wire.h>
 
+
 RF24 radio(9,10);
 
 uint64_t pipes[2] = {0xF0BADA5535, 0xF0B16B00B5}; //reading, writing
@@ -20,15 +21,19 @@ void initRadio()
   radio.openWritingPipe(pipes[1]);
 }
 
-const int buttonPinR = 5;
-const int buttonPinL = 3;
+#define buttonPinR 5
+#define buttonPinL 3
 
-const int MPU_addr = 0x68;
-const int accelP = 0x1C;
-const int gyroP = 0x1B;
-const int gyro[3] = {0x43, 0x45, 0x47}; //x, y, z for the high byte
-const int accel[3] = {0x3B, 0x3D, 0x3F};
-const int sleepAddress = 0x6B;
+#define MPU_addr 0x68
+#define accelP 0x1C
+#define gyroP 0x1B
+//const int gyro[3] = {0x43, 0x45, 0x47}; //x, y, z for the high byte
+//const int accel[3] = {0x3B, 0x3D, 0x3F};
+
+#define gyroData_StartAddress 0x43
+#define accelData_StartAddress 0x3B
+
+#define sleepAddress 0x6B
 
 
 void setSleep(bool enable){
@@ -47,36 +52,53 @@ void setSleep(bool enable){
 }
 
 void getAccelData( uint16_t* ax,uint16_t* ay, uint16_t* az){
-  for(int j = 0; j < 3; j++){
-    Wire.beginTransmission(MPU_addr);
-    Wire.write(accel[j]);
-    Wire.endTransmission(false);
-    Wire.requestFrom(MPU_addr, 2, true);
-    if(j == 0){
-      *ax = Wire.read() << 8 | Wire.read();
-    } else if(j == 1){
-      *ay = Wire.read() << 8 | Wire.read();
-    } else {
-      *az = Wire.read() << 8 | Wire.read();
-    }
-  }
+  
+  Wire.beginTransmission(MPU_addr);
+  Wire.write(accelData_StartAddress);
+  Wire.endTransmission(false);
+  Wire.requestFrom(MPU_addr, 6, true); //2 bytes for X, 2 bytes for Y, 2 bytes for Z
+  *ax = Wire.read() << 8 | Wire.read(); //read bytes 1 and 2
+  *ay = Wire.read() << 8 | Wire.read(); //read bytes 3 and 4
+  *az = Wire.read() << 8 | Wire.read(); //read bytes 5 and 6
+  
+//  for(int j = 0; j < 3; j++){
+//    Wire.beginTransmission(MPU_addr);
+//    Wire.write(accel[j]);
+//    Wire.endTransmission(false);
+//    Wire.requestFrom(MPU_addr, 2, true);
+//    if(j == 0){
+//      *ax = Wire.read() << 8 | Wire.read();
+//    } else if(j == 1){
+//      *ay = Wire.read() << 8 | Wire.read();
+//    } else {
+//      *az = Wire.read() << 8 | Wire.read();
+//    }
+//  }
 }
 
 void getGyroData( uint16_t* gx, uint16_t* gy, uint16_t* gz){
+
+  Wire.beginTransmission(MPU_addr);
+  Wire.write(gyroData_StartAddress);
+  Wire.endTransmission(false);
+  Wire.requestFrom(MPU_addr, 6, true); //2 bytes for X, 2 bytes for Y, 2 bytes for Z
+  *gx = Wire.read() << 8 | Wire.read(); //read bytes 1 and 2
+  *gy = Wire.read() << 8 | Wire.read(); //read bytes 3 and 4
+  *gz = Wire.read() << 8 | Wire.read(); //read bytes 5 and 6
   
-  for(int j = 0; j < 3; j++){
-    Wire.beginTransmission(MPU_addr);
-    Wire.write(gyro[j]);
-    Wire.endTransmission(false);
-    Wire.requestFrom(MPU_addr, 2, true);
-    if(j == 0){
-      *gx = Wire.read() << 8 | Wire.read();
-    } else if(j == 1){
-      *gy = Wire.read() << 8 | Wire.read();
-    } else {
-      *gz = Wire.read() << 8 | Wire.read();
-    }
-  }
+//  for(int j = 0; j < 3; j++){
+//    Wire.beginTransmission(MPU_addr);
+//    Wire.write(gyro[j]);
+//    Wire.endTransmission(false);
+//    Wire.requestFrom(MPU_addr, 2, true);
+//    if(j == 0){
+//      *gx = Wire.read() << 8 | Wire.read();
+//    } else if(j == 1){
+//      *gy = Wire.read() << 8 | Wire.read();
+//    } else {
+//      *gz = Wire.read() << 8 | Wire.read();
+//    }
+//  }
 }
 
 void setGyroPres(uint8_t val){
