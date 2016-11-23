@@ -204,25 +204,18 @@ boolean lState = false;
 
 void loop() {    
     
-    if(readButtonR() == 'r'){
+    if(readButtonR() == 'r'){ //toggle button state when button state change is detected
       rState = !rState;
     }
-    if(readButtonL() == 'l'){
+    
+    if(readButtonL() == 'l'){ //toggle button state when button state change is detected
       lState=!lState;
     }
-  
-    if (rState == true) {
-      packet.isPushedR = true;
-    }
-    else {
-      packet.isPushedR = false;
-    }
-    if (lState == true) {
-      packet.isPushedL = true;
-    }
-    else {
-      packet.isPushedL = false;
-    }
+
+
+    packet.isPushedR = rstate;
+    packet.isPushedL = lstate;
+    
     Serial.println("Finished reading in presses");
 
     int vD = analogRead(1);
