@@ -3783,7 +3783,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="R1" gate="G$1" x="-5.08" y="30.48" rot="R90"/>
 <instance part="GND1" gate="1" x="7.62" y="17.78"/>
 <instance part="GND2" gate="1" x="-5.08" y="15.24"/>
-<instance part="MOTOR" gate="G$1" x="7.62" y="76.2" rot="R90"/>
+<instance part="MOTOR" gate="G$1" x="17.78" y="73.66" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -3791,27 +3791,26 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="DRAIN" class="0">
 <segment>
 <pinref part="MS.MOSFET" gate="G$1" pin="D"/>
-<wire x1="7.62" y1="55.88" x2="17.78" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="17.78" y1="55.88" x2="17.78" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="55.88" x2="25.4" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="MR.DIODE" gate="G$1" pin="PPIN"/>
 <wire x1="27.94" y1="71.12" x2="25.4" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="25.4" y1="71.12" x2="25.4" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="55.88" x2="17.78" y2="55.88" width="0.1524" layer="91"/>
-<junction x="17.78" y="55.88"/>
-<pinref part="MOTOR" gate="G$1" pin="+"/>
+<pinref part="MOTOR" gate="G$1" pin="-"/>
+<wire x1="7.62" y1="71.12" x2="7.62" y2="55.88" width="0.1524" layer="91"/>
+<junction x="7.62" y="55.88"/>
 </segment>
 </net>
-<net name="POWER" class="0">
+<net name="UNREGPOW" class="0">
 <segment>
-<wire x1="17.78" y1="83.82" x2="25.4" y2="83.82" width="0.1524" layer="91"/>
 <pinref part="MR.DIODE" gate="G$1" pin="GPIN"/>
 <wire x1="25.4" y1="83.82" x2="33.02" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="83.82" x2="33.02" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="25.4" y1="83.82" x2="25.4" y2="93.98" width="0.1524" layer="91"/>
 <junction x="25.4" y="83.82"/>
 <label x="25.4" y="93.98" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="MOTOR" gate="G$1" pin="-"/>
-<wire x1="17.78" y1="83.82" x2="17.78" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="MOTOR" gate="G$1" pin="+"/>
+<wire x1="25.4" y1="83.82" x2="7.62" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="83.82" x2="7.62" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PWM" class="0">
