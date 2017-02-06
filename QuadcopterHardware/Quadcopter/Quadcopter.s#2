@@ -8639,7 +8639,12 @@ Source: www.kingbright.com</description>
 <segment>
 <pinref part="GND7" gate="1" pin="GND"/>
 <pinref part="MOSFET4" gate="G$1" pin="S"/>
-<wire x1="12.7" y1="-43.18" x2="12.7" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="-43.18" x2="12.7" y2="-35.56" width="0.1524" layer="91"/>
+<pinref part="C13" gate="G$1" pin="2"/>
+<wire x1="12.7" y1="-35.56" x2="12.7" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="-17.78" x2="50.8" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="-35.56" x2="12.7" y2="-35.56" width="0.1524" layer="91"/>
+<junction x="12.7" y="-35.56"/>
 </segment>
 <segment>
 <pinref part="RES1" gate="G$1" pin="P$2"/>

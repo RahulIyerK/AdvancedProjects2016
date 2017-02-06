@@ -8425,7 +8425,7 @@ Source: www.kingbright.com</description>
 <instance part="R1" gate="G$1" x="-25.4" y="162.56"/>
 <instance part="R3" gate="G$1" x="-25.4" y="149.86"/>
 <instance part="R4" gate="G$1" x="-25.4" y="137.16"/>
-<instance part="GND16" gate="1" x="-127" y="63.5"/>
+<instance part="GND16" gate="1" x="-127" y="60.96"/>
 <instance part="GND17" gate="1" x="-20.32" y="127"/>
 <instance part="C9" gate="G$1" x="-220.98" y="73.66"/>
 <instance part="C8" gate="G$1" x="-248.92" y="132.08" rot="R270"/>
@@ -8648,7 +8648,7 @@ Source: www.kingbright.com</description>
 </segment>
 <segment>
 <pinref part="RES1" gate="G$1" pin="P$2"/>
-<wire x1="-127" y1="66.04" x2="-127" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="-127" y1="63.5" x2="-127" y2="73.66" width="0.1524" layer="91"/>
 <junction x="-127" y="73.66"/>
 <wire x1="-127" y1="73.66" x2="-127" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="2"/>

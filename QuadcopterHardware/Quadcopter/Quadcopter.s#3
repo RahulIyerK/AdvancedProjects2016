@@ -8504,6 +8504,10 @@ Source: www.kingbright.com</description>
 <pinref part="MOTOR3" gate="G$1" pin="+"/>
 <wire x1="30.48" y1="20.32" x2="12.7" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="20.32" x2="12.7" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="C13" gate="G$1" pin="1"/>
+<wire x1="50.8" y1="-10.16" x2="50.8" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="20.32" x2="38.1" y2="20.32" width="0.1524" layer="91"/>
+<junction x="38.1" y="20.32"/>
 </segment>
 <segment>
 <pinref part="C1" gate="G$1" pin="1"/>

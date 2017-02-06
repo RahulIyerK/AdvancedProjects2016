@@ -8470,6 +8470,10 @@ Source: www.kingbright.com</description>
 <pinref part="MOTOR1" gate="G$1" pin="+"/>
 <wire x1="-109.22" y1="22.86" x2="-127" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="-127" y1="22.86" x2="-127" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="C11" gate="G$1" pin="1"/>
+<wire x1="-91.44" y1="-7.62" x2="-91.44" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-91.44" y1="22.86" x2="-101.6" y2="22.86" width="0.1524" layer="91"/>
+<junction x="-101.6" y="22.86"/>
 </segment>
 <segment>
 <pinref part="FLYBACK_DIODE3" gate="G$1" pin="GPIN"/>
@@ -8598,7 +8602,12 @@ Source: www.kingbright.com</description>
 <segment>
 <pinref part="GND3" gate="1" pin="GND"/>
 <pinref part="MOSFET2" gate="G$1" pin="S"/>
-<wire x1="-127" y1="-40.64" x2="-127" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="-127" y1="-40.64" x2="-127" y2="-30.48" width="0.1524" layer="91"/>
+<pinref part="C11" gate="G$1" pin="2"/>
+<wire x1="-127" y1="-30.48" x2="-127" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="-91.44" y1="-15.24" x2="-91.44" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="-91.44" y1="-30.48" x2="-127" y2="-30.48" width="0.1524" layer="91"/>
+<junction x="-127" y="-30.48"/>
 </segment>
 <segment>
 <pinref part="GND6" gate="1" pin="GND"/>

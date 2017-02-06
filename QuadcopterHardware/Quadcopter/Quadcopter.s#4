@@ -8364,6 +8364,7 @@ Source: www.kingbright.com</description>
 <part name="C10" library="rcl" deviceset="C-US" device="C1206" value="100uF"/>
 <part name="C11" library="rcl" deviceset="C-US" device="C1206" value="100uF"/>
 <part name="C12" library="rcl" deviceset="C-US" device="C1206" value="100uF"/>
+<part name="C13" library="rcl" deviceset="C-US" device="C1206" value="100uF"/>
 </parts>
 <sheets>
 <sheet>
@@ -8431,6 +8432,7 @@ Source: www.kingbright.com</description>
 <instance part="C10" gate="G$1" x="-162.56" y="-7.62"/>
 <instance part="C11" gate="G$1" x="-91.44" y="-10.16"/>
 <instance part="C12" gate="G$1" x="-20.32" y="-10.16"/>
+<instance part="C13" gate="G$1" x="50.8" y="-12.7"/>
 </instances>
 <busses>
 </busses>
