@@ -8445,6 +8445,7 @@ Source: www.kingbright.com</description>
 <wire x1="-231.14" y1="137.16" x2="-231.14" y2="165.1" width="0.1524" layer="91"/>
 <wire x1="-231.14" y1="165.1" x2="-238.76" y2="165.1" width="0.1524" layer="91"/>
 <junction x="-231.14" y="137.16"/>
+<label x="-231.14" y="165.1" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -8576,10 +8577,8 @@ Source: www.kingbright.com</description>
 <junction x="-139.7" y="81.28"/>
 <pinref part="C7" gate="G$1" pin="2"/>
 <wire x1="-114.3" y1="91.44" x2="-121.92" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="-121.92" y1="91.44" x2="-121.92" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="-121.92" y1="83.82" x2="-124.46" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="-124.46" y1="83.82" x2="-124.46" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="-124.46" y1="78.74" x2="-127" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-121.92" y1="91.44" x2="-121.92" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-121.92" y1="78.74" x2="-127" y2="78.74" width="0.1524" layer="91"/>
 <junction x="-127" y="78.74"/>
 <pinref part="GND16" gate="1" pin="GND"/>
 </segment>
