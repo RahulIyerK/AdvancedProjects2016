@@ -8254,7 +8254,7 @@ Source: www.kingbright.com</description>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="C6" library="rcl" deviceset="C-US" device="C0603" value="100nF"/>
 <part name="C7" library="rcl" deviceset="C-US" device="C0603" value="100nF"/>
-<part name="U$1" library="quad" deviceset="MCP1802T-3002I/OT" device="" value="MCP1802T-3002I/OT"/>
+<part name="U$1" library="quad" deviceset="MCP1802T-3002I/OT" device="" value="MCP1802T-3302I/OT"/>
 <part name="R8" library="rcl" deviceset="R-US_" device="R0603" value="1K"/>
 <part name="R9" library="rcl" deviceset="R-US_" device="R0603" value="1.7K"/>
 <part name="R6" library="rcl" deviceset="R-US_" device="R0603" value="10K"/>

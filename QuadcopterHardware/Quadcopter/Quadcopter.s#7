@@ -8445,6 +8445,7 @@ Source: www.kingbright.com</description>
 <wire x1="-231.14" y1="137.16" x2="-231.14" y2="165.1" width="0.1524" layer="91"/>
 <wire x1="-231.14" y1="165.1" x2="-238.76" y2="165.1" width="0.1524" layer="91"/>
 <junction x="-231.14" y="137.16"/>
+<label x="-231.14" y="165.1" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="GND" class="0">
