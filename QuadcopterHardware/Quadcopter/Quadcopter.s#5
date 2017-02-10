@@ -8274,7 +8274,7 @@ Source: www.kingbright.com</description>
 <part name="C11" library="rcl" deviceset="C-US" device="C1206" value="100uF"/>
 <part name="C12" library="rcl" deviceset="C-US" device="C1206" value="100uF"/>
 <part name="C13" library="rcl" deviceset="C-US" device="C1206" value="100uF"/>
-<part name="U$2" library="quad" deviceset="JST_CONNECTOR_FEMALE" device=""/>
+<part name="U$2" library="quad" deviceset="JST_CONNECTOR_FEMALE" device="" value="JST_Battery"/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
 <part name="C14" library="rcl" deviceset="C-US" device="C0603" value="100nF"/>
 <part name="LED4" library="led" deviceset="LED" device="CHIP-LED0603" value="RED"/>

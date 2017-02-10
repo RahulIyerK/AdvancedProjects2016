@@ -8319,7 +8319,7 @@ Source: www.kingbright.com</description>
 <instance part="C4" gate="G$1" x="-139.7" y="91.44"/>
 <instance part="C5" gate="G$1" x="-129.54" y="91.44"/>
 <instance part="U3" gate="G$1" x="33.02" y="104.14"/>
-<instance part="GND14" gate="1" x="5.08" y="73.66"/>
+<instance part="GND14" gate="1" x="5.08" y="88.9"/>
 <instance part="J2" gate="G$1" x="66.04" y="55.88"/>
 <instance part="GND15" gate="1" x="60.96" y="43.18"/>
 <instance part="C6" gate="G$1" x="-88.9" y="119.38" rot="R90"/>
@@ -8589,7 +8589,7 @@ Source: www.kingbright.com</description>
 </segment>
 <segment>
 <pinref part="GND14" gate="1" pin="GND"/>
-<wire x1="5.08" y1="76.2" x2="5.08" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="91.44" x2="5.08" y2="114.3" width="0.1524" layer="91"/>
 <pinref part="U3" gate="G$1" pin="GND"/>
 <wire x1="5.08" y1="114.3" x2="17.78" y2="114.3" width="0.1524" layer="91"/>
 </segment>
@@ -8911,9 +8911,9 @@ Source: www.kingbright.com</description>
 <label x="-238.76" y="66.04" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="U$1" pin="PD2(INT0)"/>
-<wire x1="-55.88" y1="78.74" x2="-22.86" y2="78.74" width="0.1524" layer="91"/>
-<label x="-22.86" y="78.74" size="1.778" layer="95" xref="yes"/>
+<pinref part="U1" gate="U$1" pin="PB0(ICP)"/>
+<wire x1="-55.88" y1="60.96" x2="-30.48" y2="60.96" width="0.1524" layer="91"/>
+<label x="-30.48" y="60.96" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -8992,6 +8992,14 @@ Source: www.kingbright.com</description>
 <pinref part="U1" gate="U$1" pin="PC3(ADC3)"/>
 <wire x1="-55.88" y1="99.06" x2="-38.1" y2="99.06" width="0.1524" layer="91"/>
 <label x="-38.1" y="99.06" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="U1" gate="U$1" pin="PD2(INT0)"/>
+<pinref part="U3" gate="G$1" pin="INT"/>
+<wire x1="-55.88" y1="78.74" x2="17.78" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="78.74" x2="17.78" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
