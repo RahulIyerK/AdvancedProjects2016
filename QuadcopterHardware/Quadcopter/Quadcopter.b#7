@@ -1796,7 +1796,7 @@ design rules under a new name.</description>
 <element name="C1" library="rcl" package="C0603" value="1uF" x="43" y="16.19" rot="R270"/>
 <element name="C10" library="rcl" package="C1210" value="100uF" x="12.27" y="8.55"/>
 <element name="C11" library="rcl" package="C1210" value="100uF" x="20.9" y="8.55"/>
-<element name="C12" library="rcl" package="C1210" value="100uF" x="-45.72" y="50.8"/>
+<element name="C12" library="rcl" package="C1210" value="100uF" x="29.53" y="8.55"/>
 <element name="C13" library="rcl" package="C1210" value="100uF" x="-53.34" y="50.8"/>
 <element name="C14" library="rcl" package="C0603" value="100nF" x="-17.78" y="63.5"/>
 <element name="C2" library="rcl" package="C0603" value="1uF" x="38.73" y="12.5"/>
@@ -1809,7 +1809,7 @@ design rules under a new name.</description>
 <element name="C9" library="rcl" package="C0603" value="10uF" x="-24.13" y="63.5"/>
 <element name="FLYBACK_DIODE1" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="8.23" y="3.33" rot="MR0"/>
 <element name="FLYBACK_DIODE2" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="16.81" y="3.33" rot="MR0"/>
-<element name="FLYBACK_DIODE3" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="35.15" y="3.58"/>
+<element name="FLYBACK_DIODE3" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="25.6" y="3.58" rot="MR0"/>
 <element name="FLYBACK_DIODE4" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="59.86" y="8.08"/>
 <element name="J2" library="quad" package="FTDI_DEVICE_RA_SMT" value="FTDI_DEVICERA_SMT" x="-2.02" y="17.13" rot="R270">
 <attribute name="PROD_ID" value="CONN-08971" x="-2.02" y="17.13" size="1.778" layer="27" rot="R270" display="off"/>
@@ -1828,10 +1828,10 @@ design rules under a new name.</description>
 <attribute name="DATASHEET" value="http://www.mouser.com/ds/2/196/irlml6244pbf-936666.pdf" x="22.52" y="3.67" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="URL" value="http://www.mouser.com/Search/ProductDetail.aspx?R=IRLML6244TRPBFvirtualkey57370000virtualkey942-IRLML6244TRPBF" x="22.52" y="3.67" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="MOSFET3" library="quad" package="SOT23-3" value="N-CHANNEL-MOSFET-IRLML6244TRPBF" x="-24.13" y="73.66">
-<attribute name="MOUSER" value="942-IRLML6244TRPBF" x="-24.13" y="73.66" size="1.778" layer="27" display="off"/>
-<attribute name="DATASHEET" value="http://www.mouser.com/ds/2/196/irlml6244pbf-936666.pdf" x="-24.13" y="73.66" size="1.778" layer="27" display="off"/>
-<attribute name="URL" value="http://www.mouser.com/Search/ProductDetail.aspx?R=IRLML6244TRPBFvirtualkey57370000virtualkey942-IRLML6244TRPBF" x="-24.13" y="73.66" size="1.778" layer="27" display="off"/>
+<element name="MOSFET3" library="quad" package="SOT23-3" value="N-CHANNEL-MOSFET-IRLML6244TRPBF" x="31.13" y="3.59" rot="R180">
+<attribute name="MOUSER" value="942-IRLML6244TRPBF" x="31.13" y="3.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DATASHEET" value="http://www.mouser.com/ds/2/196/irlml6244pbf-936666.pdf" x="31.13" y="3.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="URL" value="http://www.mouser.com/Search/ProductDetail.aspx?R=IRLML6244TRPBFvirtualkey57370000virtualkey942-IRLML6244TRPBF" x="31.13" y="3.59" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="MOSFET4" library="quad" package="SOT23-3" value="N-CHANNEL-MOSFET-IRLML6244TRPBF" x="-36.83" y="73.66">
 <attribute name="MOUSER" value="942-IRLML6244TRPBF" x="-36.83" y="73.66" size="1.778" layer="27" display="off"/>
@@ -1840,8 +1840,8 @@ design rules under a new name.</description>
 </element>
 <element name="MOTOR" library="quad" package="JST_CONNECTOR_FEMALE" value="JST_CONNECTOR_FEMALE" x="10.22" y="3.64"/>
 <element name="MOTOR1" library="quad" package="JST_CONNECTOR_FEMALE" value="JST_CONNECTOR_FEMALE" x="18.89" y="3.64"/>
-<element name="MOTOR2" library="quad" package="JST_CONNECTOR_FEMALE" value="JST_CONNECTOR_FEMALE" x="32.06" y="3.64"/>
-<element name="MOTOR3" library="quad" package="JST_CONNECTOR_FEMALE" value="JST_CONNECTOR_FEMALE" x="56.73" y="8.14"/>
+<element name="MOTOR2" library="quad" package="JST_CONNECTOR_FEMALE" value="JST_CONNECTOR_FEMALE" x="27.56" y="3.64"/>
+<element name="MOTOR3" library="quad" package="JST_CONNECTOR_FEMALE" value="JST_CONNECTOR_FEMALE" x="36.23" y="3.64"/>
 <element name="R1" library="rcl" package="R0603" value="150" x="88.99" y="26.08"/>
 <element name="R10" library="rcl" package="R0603" value="10K" x="-34.29" y="63.5"/>
 <element name="R11" library="rcl" package="R0603" value="10K" x="-54.61" y="63.5"/>
@@ -1898,10 +1898,8 @@ design rules under a new name.</description>
 <contactref element="R9" pad="1"/>
 <contactref element="C8" pad="1"/>
 <contactref element="U$2" pad="+"/>
-<wire x1="59.86" y1="9.63" x2="57.22" y2="9.63" width="1.016" layer="1"/>
-<wire x1="57.22" y1="9.63" x2="56.73" y2="9.14" width="1.016" layer="1"/>
-<wire x1="35.15" y1="5.13" x2="32.55" y2="5.13" width="1.016" layer="1"/>
-<wire x1="32.55" y1="5.13" x2="32.06" y2="4.64" width="1.016" layer="1"/>
+<wire x1="59.86" y1="9.63" x2="57.22" y2="9.63" width="0" layer="19" extent="1-16"/>
+<wire x1="57.22" y1="9.63" x2="36.23" y2="4.64" width="0" layer="19" extent="1-16"/>
 <wire x1="38.2" y1="20.74" x2="42.2" y2="20.74" width="1.016" layer="1"/>
 <wire x1="42.2" y1="20.74" x2="42.74" y2="20.2" width="1.016" layer="1"/>
 <wire x1="37.9702" y1="20.5102" x2="38.2" y2="20.74" width="0.8128" layer="1"/>
@@ -1917,14 +1915,17 @@ design rules under a new name.</description>
 <wire x1="18.65" y1="4.88" x2="18.89" y2="4.64" width="1.016" layer="16"/>
 <wire x1="19.5" y1="8.55" x2="19.5" y2="5.25" width="1.016" layer="1"/>
 <wire x1="19.5" y1="5.25" x2="18.89" y2="4.64" width="1.016" layer="1"/>
-<wire x1="43" y1="17.04" x2="56.73" y2="9.14" width="0" layer="19" extent="1-1"/>
+<wire x1="25.6" y1="5.13" x2="27.07" y2="5.13" width="1.016" layer="16"/>
+<wire x1="27.07" y1="5.13" x2="27.56" y2="4.64" width="1.016" layer="16"/>
+<wire x1="28.13" y1="8.55" x2="28.13" y2="5.21" width="1.016" layer="1"/>
+<wire x1="28.13" y1="5.21" x2="27.56" y2="4.64" width="1.016" layer="1"/>
+<wire x1="43" y1="17.04" x2="36.23" y2="4.64" width="0" layer="19" extent="1-1"/>
 <wire x1="39.7016" y1="15.1502" x2="39.7016" y2="17.0298" width="0" layer="19" extent="1-1"/>
-<wire x1="35.15" y1="5.13" x2="39.7016" y2="15.1502" width="0" layer="19" extent="1-1"/>
-<wire x1="19.5" y1="5.25" x2="32.06" y2="4.64" width="0" layer="19" extent="1-1"/>
+<wire x1="28.13" y1="8.55" x2="39.7016" y2="15.1502" width="0" layer="19" extent="1-1"/>
+<wire x1="19.5" y1="5.25" x2="25.6" y2="5.13" width="0" layer="19" extent="1-16"/>
 <wire x1="10.87" y1="5.29" x2="16.81" y2="4.88" width="0" layer="19" extent="1-16"/>
 <wire x1="-30.06" y1="63.5" x2="10.87" y2="8.55" width="0" layer="19" extent="1-1"/>
-<wire x1="-47.12" y1="50.8" x2="-30.06" y2="63.5" width="0" layer="19" extent="1-1"/>
-<wire x1="-54.74" y1="50.8" x2="-47.12" y2="50.8" width="0" layer="19" extent="1-1"/>
+<wire x1="-54.74" y1="50.8" x2="-30.06" y2="63.5" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND">
 <contactref element="U$1" pad="2"/>
@@ -1981,6 +1982,10 @@ design rules under a new name.</description>
 <wire x1="22.3" y1="6.8" x2="21.5" y2="6" width="1.016" layer="1"/>
 <wire x1="21.5" y1="6" x2="21.5" y2="4.74" width="1.016" layer="1"/>
 <wire x1="21.5" y1="4.74" x2="21.57" y2="4.67" width="1.016" layer="1"/>
+<wire x1="30.93" y1="8.55" x2="30.93" y2="6.43" width="1.016" layer="1"/>
+<wire x1="30.93" y1="6.43" x2="30.25" y2="5.75" width="1.016" layer="1"/>
+<wire x1="30.25" y1="5.75" x2="30.25" y2="4.66" width="1.016" layer="1"/>
+<wire x1="30.25" y1="4.66" x2="30.18" y2="4.59" width="1.016" layer="1"/>
 <wire x1="89.76" y1="22.58" x2="89.84" y2="26.08" width="0" layer="19" extent="1-1"/>
 <wire x1="89.68" y1="18.08" x2="89.76" y2="22.58" width="0" layer="19" extent="1-1"/>
 <wire x1="43" y1="15.34" x2="89.68" y2="18.08" width="0" layer="19" extent="1-1"/>
@@ -1992,6 +1997,7 @@ design rules under a new name.</description>
 <wire x1="18.04" y1="24.1" x2="20.0074" y2="18.01" width="0" layer="19" extent="1-1"/>
 <wire x1="13.67" y1="8.55" x2="17.97" y2="13.88" width="0" layer="19" extent="1-1"/>
 <wire x1="22.3" y1="8.55" x2="17.97" y2="13.88" width="0" layer="19" extent="1-1"/>
+<wire x1="30.25" y1="5.75" x2="22.3" y2="6.8" width="0" layer="19" extent="1-1"/>
 <wire x1="8.63" y1="24.99" x2="18.04" y2="24.1" width="0" layer="19" extent="1-1"/>
 <wire x1="2.98" y1="10.78" x2="13.67" y2="8.55" width="0" layer="19" extent="1-1"/>
 <wire x1="2.98" y1="13.32" x2="2.98" y2="10.78" width="0" layer="19" extent="1-1"/>
@@ -2002,14 +2008,12 @@ design rules under a new name.</description>
 <wire x1="-35.14" y1="63.5" x2="-33.44" y2="57.15" width="0" layer="19" extent="1-1"/>
 <wire x1="-40.22" y1="63.5" x2="-35.14" y2="63.5" width="0" layer="19" extent="1-1"/>
 <wire x1="-41.06" y1="57.15" x2="-40.22" y2="63.5" width="0" layer="19" extent="1-1"/>
-<wire x1="-44.32" y1="50.8" x2="-41.06" y2="57.15" width="0" layer="19" extent="1-1"/>
 <wire x1="-29.63" y1="68.58" x2="-35.14" y2="63.5" width="0" layer="19" extent="1-1"/>
 <wire x1="-35.88" y1="72.66" x2="-29.63" y2="68.58" width="0" layer="19" extent="1-1"/>
 <wire x1="-48.68" y1="57.15" x2="-41.06" y2="57.15" width="0" layer="19" extent="1-1"/>
 <wire x1="-50.38" y1="63.5" x2="-48.68" y2="57.15" width="0" layer="19" extent="1-1"/>
 <wire x1="-55.46" y1="63.5" x2="-50.38" y2="63.5" width="0" layer="19" extent="1-1"/>
 <wire x1="-51.94" y1="50.8" x2="-48.68" y2="57.15" width="0" layer="19" extent="1-1"/>
-<wire x1="-23.18" y1="72.66" x2="-29.63" y2="68.58" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="3V3">
 <contactref element="C2" pad="1"/>
@@ -2077,17 +2081,18 @@ design rules under a new name.</description>
 <contactref element="MOSFET3" pad="3"/>
 <contactref element="FLYBACK_DIODE3" pad="POS"/>
 <contactref element="MOTOR2" pad="-"/>
-<wire x1="35.15" y1="2.08" x2="32.62" y2="2.08" width="1.016" layer="1"/>
-<wire x1="32.62" y1="2.08" x2="32.06" y2="2.64" width="1.016" layer="1"/>
-<wire x1="32.06" y1="2.64" x2="-24.13" y2="74.76" width="0" layer="19" extent="1-1"/>
+<wire x1="25.6" y1="2.08" x2="27" y2="2.08" width="1.016" layer="16"/>
+<wire x1="27" y1="2.08" x2="27.56" y2="2.64" width="1.016" layer="16"/>
+<wire x1="31.13" y1="2.49" x2="27.71" y2="2.49" width="1.016" layer="1"/>
+<wire x1="27.71" y1="2.49" x2="27.56" y2="2.64" width="1.016" layer="1"/>
 </signal>
 <signal name="DRAIN4">
 <contactref element="MOSFET4" pad="3"/>
 <contactref element="FLYBACK_DIODE4" pad="POS"/>
 <contactref element="MOTOR3" pad="-"/>
-<wire x1="59.86" y1="6.58" x2="57.29" y2="6.58" width="1.016" layer="1"/>
-<wire x1="57.29" y1="6.58" x2="56.73" y2="7.14" width="1.016" layer="1"/>
-<wire x1="-36.83" y1="74.76" x2="56.73" y2="7.14" width="0" layer="19" extent="1-1"/>
+<wire x1="59.86" y1="6.58" x2="57.29" y2="6.58" width="0" layer="19" extent="1-16"/>
+<wire x1="57.29" y1="6.58" x2="36.23" y2="2.64" width="0" layer="19" extent="1-16"/>
+<wire x1="-36.83" y1="74.76" x2="36.23" y2="2.64" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="DRAIN2">
 <contactref element="MOSFET2" pad="3"/>
@@ -2109,7 +2114,7 @@ design rules under a new name.</description>
 <contactref element="MOSFET3" pad="1"/>
 <contactref element="R10" pad="2"/>
 <contactref element="U1" pad="10"/>
-<wire x1="-33.44" y1="63.5" x2="-25.08" y2="72.66" width="0" layer="19" extent="1-1"/>
+<wire x1="-33.44" y1="63.5" x2="32.08" y2="4.59" width="0" layer="19" extent="1-1"/>
 <wire x1="22.3" y1="12.5174" x2="-33.44" y2="63.5" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWM4">
