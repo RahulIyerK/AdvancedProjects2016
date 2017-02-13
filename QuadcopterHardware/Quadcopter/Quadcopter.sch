@@ -8899,9 +8899,9 @@ Source: www.kingbright.com</description>
 <label x="-231.14" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="U$1" pin="PD4(XCK/T0)"/>
-<wire x1="-55.88" y1="73.66" x2="-22.86" y2="73.66" width="0.1524" layer="91"/>
-<label x="-22.86" y="73.66" size="1.778" layer="95" xref="yes"/>
+<label x="-38.1" y="76.2" size="1.778" layer="95" xref="yes"/>
+<wire x1="-55.88" y1="76.2" x2="-38.1" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="U1" gate="U$1" pin="PD3(INT1)"/>
 </segment>
 </net>
 <net name="CE" class="0">
@@ -8911,9 +8911,9 @@ Source: www.kingbright.com</description>
 <label x="-238.76" y="66.04" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="U$1" pin="PB0(ICP)"/>
-<wire x1="-55.88" y1="60.96" x2="-30.48" y2="60.96" width="0.1524" layer="91"/>
-<label x="-30.48" y="60.96" size="1.778" layer="95" xref="yes"/>
+<label x="-10.16" y="73.66" size="1.778" layer="95" xref="yes"/>
+<wire x1="-10.16" y1="73.66" x2="-55.88" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="U1" gate="U$1" pin="PD4(XCK/T0)"/>
 </segment>
 </net>
 <net name="AREF" class="0">
