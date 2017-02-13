@@ -8916,7 +8916,7 @@ Source: www.kingbright.com</description>
 <label x="-30.48" y="60.96" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$1" class="0">
+<net name="AREF" class="0">
 <segment>
 <pinref part="U1" gate="U$1" pin="AREF"/>
 <wire x1="-104.14" y1="91.44" x2="-106.68" y2="91.44" width="0.1524" layer="91"/>

@@ -8994,7 +8994,7 @@ Source: www.kingbright.com</description>
 <label x="-38.1" y="99.06" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$4" class="0">
+<net name="ACC_INT" class="0">
 <segment>
 <pinref part="U1" gate="U$1" pin="PD2(INT0)"/>
 <pinref part="U3" gate="G$1" pin="INT"/>
