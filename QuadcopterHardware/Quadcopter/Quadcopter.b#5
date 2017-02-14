@@ -2055,8 +2055,7 @@ design rules under a new name.</description>
 <wire x1="89.76" y1="22.58" x2="89.84" y2="26.08" width="0" layer="19" extent="1-1"/>
 <wire x1="89.68" y1="18.08" x2="89.76" y2="22.58" width="0" layer="19" extent="1-1"/>
 <wire x1="71.07" y1="43.25" x2="89.84" y2="26.08" width="0" layer="19" extent="1-1"/>
-<wire x1="34.75" y1="21.595" x2="71.07" y2="43.25" width="0" layer="19" extent="1-1"/>
-<wire x1="43.25" y1="22.09" x2="34.75" y2="21.595" width="0" layer="19" extent="1-1"/>
+<wire x1="43.25" y1="22.09" x2="71.07" y2="43.25" width="0" layer="19" extent="1-1"/>
 <wire x1="40.2916" y1="18.25" x2="42.99" y2="19.7" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="3V3">
