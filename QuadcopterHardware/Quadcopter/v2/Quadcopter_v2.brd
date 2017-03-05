@@ -181,9 +181,7 @@
 <text x="30.48" y="12.66825" size="0.8128" layer="21">100nF</text>
 <text x="29.55925" y="10.89025" size="0.8128" layer="21" rot="R90">100nF</text>
 <text x="22.25675" y="17.78" size="0.8128" layer="21">MCU</text>
-<text x="1.17475" y="10.06475" size="0.8128" layer="21" rot="R270">IEEE AP 2017
-RI, AW, AW
-Team 10</text>
+<text x="5.74675" y="25.36825" size="0.8128" layer="21" rot="R180" align="top-right">AP Team 10</text>
 <text x="39.02075" y="23.14575" size="0.8128" layer="21">RESET</text>
 </plain>
 <libraries>
@@ -2499,10 +2497,4 @@ Please make sure your boards conform to these design rules.</description>
 </signals>
 </board>
 </drawing>
-<compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
-</compatibility>
 </eagle>
