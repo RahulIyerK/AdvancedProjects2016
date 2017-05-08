@@ -65,9 +65,9 @@ class PIDAlgorithm {
     //returns a correction ranging from -1.0 to 1.0
     double PIDErrorToCorrection(double PIDError){
       double pidMinMax = (double)PIDValueMinMax;//typecast to a double to avoid those dreadful overflow problems
-      double maxError = minMax * 2;
-      double maxPIDError = maxError + (maxSize * maxError) + (maxError * 2);
-      return (PIDError / pidMinMax) ;
+      double maxError = pidMinMax * 2;//get the min/max of pid
+      double maxPIDError = maxError + (maxSize * maxError) + (maxError * 2); //calculate the total range that the error could be
+      return (PIDError / maxPIDError);
     }
 
   private:
