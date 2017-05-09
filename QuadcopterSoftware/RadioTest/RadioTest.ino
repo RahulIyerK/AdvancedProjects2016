@@ -1,6 +1,6 @@
 #include "Controller.h" //cullenmq's nRF24L01+ controller library
 #include "printf.h"
-
+#include <SPI.h>
 #define channel 10 //we're team 10
 #define PALevel RF24_PA_HIGH //Power Level
 #define CE A0 //the CE connection on our quadcopter board
