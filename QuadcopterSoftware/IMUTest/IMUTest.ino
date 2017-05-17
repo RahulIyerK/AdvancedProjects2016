@@ -118,19 +118,20 @@ void setup() {
 
 void loop()
 {
-  getAccelData(*a_data_x, *a_data_y, *a_data_z);
-  getGyroData(*g_data_x, *g_data_y, *g_data_z);
-
-  delay(2);
+  getAccelData(&a_data_x, &a_data_y, &a_data_z);
+  
+  getGyroData(&g_data_x, &g_data_y, &g_data_z);
+  
   
   Serial.print("Accelerometer: ");
-  Serial.print(a_data_x);
-  Serial.print(", ");
-  Serial.print(a_data_y);
-  Serial.print(", ");
-  Serial.println(a_data_z);
+//  Serial.println(a_data_x);
+  Serial.println((int16_t)a_data_x);
+//  Serial.print(", ");
+//  Serial.print(a_data_y);
+//  Serial.print(", ");
+//  Serial.println(a_data_z);
   
-  Serial.print("Gyroscope: ");
+  /*Serial.print("Gyroscope: ");
   Serial.print(g_data_x);
   Serial.print(", ");
   Serial.print(g_data_y);
@@ -138,7 +139,7 @@ void loop()
   Serial.println(g_data_z);
 
   Serial.println("-----------------------");
-  
+  */
 }
 
 

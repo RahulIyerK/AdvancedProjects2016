@@ -3,8 +3,8 @@
 #include <SPI.h>
 #define channel 10 //we're team 10
 #define PALevel RF24_PA_HIGH //Power Level
-#define CE A0 //the CE connection on our quadcopter board
-#define CS A1 //the CSN connection on our quadcopter board
+#define CE 4 //the CE connection on our quadcopter board
+#define CS 3 //the CSN connection on our quadcopter board
 
 RF24 radio(CE, CS); //initialize the nRF24L01+ radio module
  
@@ -28,7 +28,7 @@ void loop() {
     Serial.println("EMERGENCY!! TURN OFF ALL MOTORS AND STOP RUNING CODE");
     return;
   }
-  
+
   //only print values if new values have been received
   //controller.receive will return however many values were in the buffer
   

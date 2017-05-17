@@ -1,7 +1,7 @@
-#define readPin A2 //atmega voltage divider output connection on quadcopter board
+#define dividerPin A0 //atmega voltage divider output connection on quadcopter board
 
-#define R1 1000 //the resistor after which the voltage is read in the voltage divider
-#define R2 1600 //voltage divider resistor across which the voltage is read
+#define R1 1589 //the resistor after which the voltage is read in the voltage divider
+#define R2 983 //voltage divider resistor across which the voltage is read
 
 #define logicHIGH 3.3 //the high voltage of our Arduino 
 
@@ -10,10 +10,11 @@
 void setup() {
   pinMode(LED, OUTPUT);
   pinMode(dividerPin, INPUT);
+  digitalWrite(LED, LOW);
 }
 
 void loop() {
-   int batteryReadValue = analogRead(readPin);
+   int batteryReadValue = analogRead(dividerPin);
   //calc battery voltage (in milliVolts)
   unsigned long batteryVoltage = (batteryReadValue * logicHIGH * (R1 + R2)) / (R2) * 1000 / 1023;
   
@@ -21,5 +22,9 @@ void loop() {
   {
     digitalWrite(LED, HIGH); //we turn on the LED when the batteryVoltage is below nominal
     
+  }
+  else
+  {
+    digitalWrite(LED, LOW);
   }
 }
