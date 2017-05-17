@@ -11,8 +11,8 @@
 //RF module defines
 #define channel 10 //our team number
 #define PALevel RF24_PA_HIGH
-#define CE A0
-#define CS A1
+#define CE 4
+#define CS 3
 
 //IMU defines
 
