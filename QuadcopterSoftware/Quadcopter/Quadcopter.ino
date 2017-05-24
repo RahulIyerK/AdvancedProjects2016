@@ -11,8 +11,8 @@
 //RF module defines
 #define channel 10 //our team number
 #define PALevel RF24_PA_HIGH
-#define CE 4
-#define CS 3
+#define CE A0
+#define CS A1
 
 //IMU defines
 
@@ -20,10 +20,10 @@
 #define LED A3
 
 //PWM Output Pins
-#define MOTOR_1 5 
-#define MOTOR_2 6
-#define MOTOR_3 9
-#define MOTOR_4 10 
+#define MOTOR_FL 5 
+#define MOTOR_FR 6
+#define MOTOR_BR 9
+#define MOTOR_BL 10 
 
 //Analog Input Pins
 #define VDIV_PIN A0 //voltage divider analog input pin
@@ -157,7 +157,7 @@ rx_values_t rxValues; //re
 Controller controller(&radio, channel, false);
 
 //declare default speed variables
-int baseSpeed; //the base PWM that the motors will be at
+int throttle; //the base PWM that the motors will be at
 
 void setup() {
   Serial.begin(115200);
@@ -223,19 +223,40 @@ void loop() {
   
   //first set all the motors to the base speed
   //i.e. motor1 = baseSpeed;
+  int motorfl = throttle;
+  int motorfr = throttle;
+  int motorbr = throttle;
+  int motorbl = throttle;
   //now do all of the corrections for each motor for each dimension
   //i.e. motor1 += (correction * MAX_ADJUSTMENT);
   for(int j = 0; j < 3; j++){
     if(j == PITCH) {
       //do pitch corrections for each motor
+      motorfl += pitchCorrection;
+      motorfr += pitchCorrection;
+      motorbr -= pitchCorrection;
+      motorbl -= pitchCorrection;
     } else if (j == ROLL) {
       //do roll corrections for each motor
+      motorfl += rollCorrection;
+      motorfr -= rollCorrection;
+      motorbr -= rollCorrection;
+      motorbl += rollCorrection;
     } else { //must be YAW
       //do yaw corrections for each motor
+      motorfl += yawCorrection;
+      motorfr -= yawCorrection;
+      motorbr += yawCorrection;
+      motorbl -= yawCorrection;
     }
   }
   //now constrain the values of the PWM so that we don't go too high or too low
   //i.e. motor1 = constrain(motor1, MIN_PWM, MAX_PWM);
+  analogWrite(MOTOR_FL, constrain(motorfl, MIN_PWM, MAX_PWM));
+  analogWrite(MOTOR_FR, constrain(motorfr, MIN_PWM, MAX_PWM));
+  analogWrite(MOTOR_BR, constrain(motorbr, MIN_PWM, MAX_PWM));
+  analogWrite(MOTOR_BL, constrain(motorbl, MIN_PWM, MAX_PWM));
+  
 }
 void updateBattery() {
   int batRead = analogRead(contBattPin);
